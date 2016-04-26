@@ -1,8 +1,8 @@
 {
-    "name": "phildier/php-rtorrent-client",
+    "name": "rewrewby/php-rtorrent-client",
     "description": "PHP XMLRPC client for rTorrent",
     "require": {
-        "guzzlehttp/guzzle": "6.0.1"
+        "guzzlehttp/guzzle": "^6.2"
     },
     "license": "BSD",
     "authors": [
