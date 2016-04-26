@@ -113,23 +113,14 @@ class Client {
 			//printf('using cache for: %s<br>', $method);
 			return $cache;
 		}
-		
+
+		$getdata = $this->execute($method, $params)->getMethod($method);
 		// Request -> Get Result -> Make Torrent Object Array
-		foreach ($this->execute($method, $params)->getMethod($method) AS $i => $data)
+		foreach ($getdata AS $i => $data)
 		{
 			// Multi-Request
-			if (is_array($data[0]))
-			{
-				foreach ($data AS $result)
-				{
-					$results[] = new $class($this, $result);
-				}
-			}
-			// Request
-			else
-			{
-				$results[] = new $class($this, $data);
-			}
+				//$results[] = $data;
+				$results[] = new $class($data);
 		}
 		
 		// Save to referenced cache variable if set
