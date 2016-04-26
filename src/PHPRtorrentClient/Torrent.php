@@ -24,6 +24,7 @@ class Torrent extends \PHPRtorrentClient\Base
 			'd.erase'	=> [],
 		],
 	];
+
 /*
 d.add_peer
 d.check_hash               Initiate a hash check
@@ -272,7 +273,7 @@ d.views.remove
 	{
 		return ($this->isFinished() ? false : true);
 	}
-	
+
 	public function getRatio()
 	{
 		return (!empty($this->get('get_ratio')) ? ($this->get('get_ratio') / 1000) : 0);
