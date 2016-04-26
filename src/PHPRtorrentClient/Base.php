@@ -4,15 +4,15 @@ namespace PHPRtorrentClient;
 
 class Base {
 
-	protected $client;
+	//protected $client;
 	protected $data = [];
 	protected $commands = [];
 	protected $aliases = [];
 	protected $variable_cache = [];
 
-	function __construct(&$client, $data)
+	function __construct($data)
 	{
-		$this->client = $client;
+		//$this->client = $client;
 		$this->data = $data;
 	}
 	
@@ -43,10 +43,10 @@ class Base {
 	
 	private function __findVariable($name)
 	{
-		if ($this->variable_cache[$name])
-		{
-			return $this->variable_cache[$name];
-		}
+		//if ($this->variable_cache[$name])
+		//{
+		//	return $this->variable_cache[$name];
+		//}
 		
 		$this->variable_cache[$name] = null;
 		
