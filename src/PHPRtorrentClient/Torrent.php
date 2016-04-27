@@ -144,6 +144,7 @@ d.views.remove
 	
 	protected $aliases = [
 		'get_label'	=> 'get_custom1',
+		'get_size'	=> 'get_size_bytes',
 	];
 	
 	public $trackers;
