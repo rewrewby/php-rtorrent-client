@@ -9,7 +9,7 @@ class Client {
 	public $torrents = [];
 	public $torrentsHashes = [];
 	
-	public $default_rpc_address = 'http://localhost/RPC2';
+	public $default_rpc_address = 'http://user:pass@localhost/RPC2';
 	
 	public $default_torrent_method = 'd.multicall';
 	public $default_torrent_params = [
@@ -24,33 +24,42 @@ class Client {
 	/* 4  */	'd.get_state=',		// 0 = stopped, 1 = running (upload or download)
 			
 	/* 5  */	'd.get_name=',
+	/* 5.5  */	'd.get_directory=',
 	/* 6  */	'd.get_size_bytes=',
-	/* 7  */	'd.get_completed_chunks=',
-	/* 8  */	'd.get_size_chunks=',
+	/* 6.2  */	'd.get_size_files=',
+	/* 6.5  */	'd.get_complete=',
+	/* 7  */	//'d.get_completed_chunks=',
+	/* 8  */	//'d.get_size_chunks=',
 	/* 9  */	'd.get_bytes_done=',
-			
-	/* 10  */	'd.get_up_total=',
+	/* 9.5  */	'd.get_connection_current=',
+
+	/* 10  */	//'d.get_up_total=',
 	/* 11  */	'd.get_ratio=',
-	/* 12  */	'd.get_up_rate=',
-	/* 13  */	'd.get_down_rate=',
-	/* 14  */	'd.get_chunk_size=',
-			
+	/* 12  */	//'d.get_up_rate=',
+	/* 13  */	//'d.get_down_rate=',
+	/* 14  */	//'d.get_chunk_size=',
+	/* 14.5  */	'd.get_loaded_file=',
+
 	/* 15  */	'd.get_custom1=',
-	/* 16  */	'd.get_peers_accounted=',
-	/* 17  */	'd.get_peers_not_connected=',
-	/* 18  */	'd.get_peers_connected=',
-	/* 19  */	'd.get_peers_complete=',
+	/* 15.5  */	'd.get_local_id=',
+	/* 16  */	//'d.get_peers_accounted=',
+	/* 17  */	//'d.get_peers_not_connected=',
+	/* 18  */	//'d.get_peers_connected=',
+	/* 19  */	//'d.get_peers_complete=',
 			
 	/* 20  */	'd.get_left_bytes=',	// if === 0 then download is complete, no bytes remaining to download
 	/* 21  */	'd.get_priority=',
+	/* 21.5  */	'd.get_priority_str=',
 	/* 22  */	'd.get_state_changed=',
-	/* 23  */	'd.get_skip_total=',
-	/* 24  */	'd.get_hashing=',
+	/* 22.5  */	'd.get_state_counter=',
+	/* 23  */	//'d.get_skip_total=',
+	/* 24  */	//'d.get_hashing=',
 			
-	/* 25  */	'd.get_chunks_hashed=',
-	/* 26  */	'd.get_base_path=',
+	/* 25  */	//'d.get_chunks_hashed=',
+	/* 26  */	'd.get_base_filename=',
+	/* 26.5  */	'd.get_base_path=',
 	/* 27  */	'd.get_creation_date=',
-	/* 28  */	'd.get_tracker_focus=',
+	/* 28  */	//'d.get_tracker_focus=',
 	/* 29  */	'd.is_active=',
 			
 	/* 30  */	'd.get_message=',
@@ -135,7 +144,27 @@ class Client {
 		// Return
 		return $this->request($this->default_torrent_method, array_merge([$view], (count($params) ? $params : $this->default_torrent_params)), '\PHPRtorrentClient\Torrent', $this->torrents[$view]);
 	}
-	
+
+	public function getTorrentByHash($hash, $view = 'main')
+	{
+		// Start Request
+		$request = new \PHPRtorrentClient\Request();
+
+		// Get All Torrents
+		$torrents = $this->getTorrents($view);
+
+		// Iterate Torrents
+		foreach ($torrents AS $torrent)
+		{
+			if ($torrent->getHash() == $hash) {
+				return $torrent;
+			}
+		}
+
+		// Return
+		return null;
+	}
+
 	public function getTorrentsByTracker($find, $view = 'main')
 	{
 		// Start Request
