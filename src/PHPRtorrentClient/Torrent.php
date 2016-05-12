@@ -280,3 +280,4 @@ d.views.remove
 		return (!empty($this->get('get_ratio')) ? ($this->get('get_ratio') / 1000) : 0);
 	}
 }
+
