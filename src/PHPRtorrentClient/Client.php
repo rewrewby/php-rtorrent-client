@@ -9,7 +9,7 @@ class Client {
 	public $torrents = [];
 	public $torrentsHashes = [];
 	
-	public $default_rpc_address = 'http://user:pass@localhost/RPC2';
+	public $default_rpc_address = 'http://localhost/RPC2';
 	
 	public $default_torrent_method = 'd.multicall';
 	public $default_torrent_params = [
