@@ -2,7 +2,7 @@
     "name": "rewrewby/php-rtorrent-client",
     "description": "PHP XMLRPC client for rTorrent",
     "require": {
-        "guzzlehttp/guzzle": "~5"
+        "guzzlehttp/guzzle": "^6.2"
     },
     "license": "BSD",
     "authors": [
