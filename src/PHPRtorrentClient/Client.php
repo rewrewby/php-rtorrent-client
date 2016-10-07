@@ -36,7 +36,7 @@ class Client {
 	/* 10  */	//'d.get_up_total=',
 	/* 11  */	'd.get_ratio=',
 	/* 12  */	//'d.get_up_rate=',
-	/* 13  */	//'d.get_down_rate=',
+	/* 13  */	'd.get_down_rate=',
 	/* 14  */	//'d.get_chunk_size=',
 	/* 14.5  */	'd.get_loaded_file=',
 
